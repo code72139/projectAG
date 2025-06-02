@@ -1,0 +1,254 @@
+:root {
+    --bs-primary: #A8D5E2;
+    --bs-secondary: #F9E2AE;
+    --bs-success: #95D5B2;
+    --bs-danger: #F8B3B3;
+    --bs-light: #F7F7F7;
+    --bs-dark: #52616B;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: var(--bs-light);
+}
+
+/* Personalización de la navbar de Bootstrap */
+.navbar {
+    background-color: var(--bs-primary) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Personalización de las cards de Bootstrap */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s;
+}
+
+/* Personalización de las tablas de Bootstrap */
+.table {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: var(--bs-light);
+    border-bottom: 2px solid var(--bs-primary);
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(168, 213, 226, 0.1);
+}
+
+/* Estilos responsivos para tablas */
+@media (max-width: 768px) {
+    .table-stack {
+        display: block;
+    }
+    
+    .table-stack thead {
+        display: none;
+    }
+    
+    .table-stack tr {
+        display: block;
+        border-bottom: 2px solid var(--bs-light);
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .table-stack td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem;
+        border: none;
+    }
+    
+    .table-stack td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        color: var(--bs-dark);
+    }
+    
+    .table-stack td.action-buttons {
+        text-align: center;
+        background-color: var(--bs-light);
+        border-radius: 6px;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+    }
+    
+    .table-stack td.action-buttons:before {
+        display: none;
+    }
+}
+
+/* Estilos unificados para botones */
+.btn {
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Botones pequeños en tablas */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Botones de acción en tablas */
+.action-buttons .btn {
+    margin: 0 0.25rem;
+}
+
+/* Botones outline */
+.btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+.btn-outline-primary:hover {
+    background-color: var(--bs-primary);
+    color: var(--bs-dark);
+}
+
+.btn-outline-danger {
+    color: var(--bs-danger);
+    border-color: var(--bs-danger);
+}
+.btn-outline-danger:hover {
+    background-color: var(--bs-danger);
+    color: white;
+}
+
+.btn-outline-info {
+    color: var(--bs-dark);
+    border-color: var(--bs-primary);
+}
+.btn-outline-info:hover {
+    background-color: var(--bs-primary);
+    color: var(--bs-dark);
+}
+
+/* Estilos para badges */
+.badge {
+    padding: 0.5em 0.8em;
+    font-size: 0.85em;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.badge.bg-success {
+    background-color: var(--bs-success) !important;
+}
+
+.badge.bg-danger {
+    background-color: var(--bs-danger) !important;
+}
+
+/* Espaciado entre botones fuera de tablas */
+.btn + .btn {
+    margin-left: 0.5rem;
+}
+
+/* Botones de formulario */
+form .btn {
+    padding: 0.5rem 1rem;
+}
+
+/* Mejoras en los formularios de Bootstrap */
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(168, 213, 226, 0.25);
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* Personalización de los mensajes de validación */
+.validation-summary-errors {
+    color: var(--bs-danger);
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: rgba(var(--bs-danger-rgb), 0.1);
+    margin-bottom: 1rem;
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Estilos específicos para el login */
+.form-floating > .form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.15rem rgba(168, 213, 226, 0.25);
+}
+
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-control:focus ~ label {
+    color: var(--bs-dark);
+    opacity: 0.8;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.btn-primary {
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+}
+
+.alert {
+    border: none;
+    border-radius: 8px;
+}
+
+.alert-danger {
+    background-color: rgba(var(--bs-danger-rgb), 0.1);
+    color: var(--bs-danger);
+}
