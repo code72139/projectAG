@@ -9,16 +9,12 @@ RUN dotnet restore
 # Copiar el resto del código fuente
 COPY . .
 
-# Compilar la aplicación
-RUN dotnet build "Project_AG.csproj" -c Release -o /app/build
-
-# Publicar la aplicación
-FROM build AS publish
+# Publicar directamente sin build intermedio
 RUN dotnet publish "Project_AG.csproj" -c Release -o /app/publish
 
 # Imagen final
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "Project_AG.dll"]

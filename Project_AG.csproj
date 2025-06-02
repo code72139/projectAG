@@ -6,7 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>20157816-e428-4d00-ac2e-82252bf3bbde</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>  <!-- Esta línea -->
+    <MvcRazorCompileOnBuild>false</MvcRazorCompileOnBuild>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <ItemGroup>
