@@ -17,7 +17,6 @@ TestResults/
 *.cache
 *.pdb
 *.tmp
-*.log
 
 # Visual Studio
 .vs/
@@ -108,3 +107,8 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+!Project_AG.csproj
+!**/*.cs
+!**/*.cshtml
+!**/*.json

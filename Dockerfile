@@ -5,11 +5,13 @@ WORKDIR /src
 # Copiar todo el código fuente primero
 COPY . .
 
+RUN ls -la && ls -la /src
 # Restaurar, compilar y publicar
-RUN dotnet publish "Project_AG.csproj" \
-  -c Release \
-  -o /app/publish \
-  /p:UseAppHost=false
+RUN ls -la /src
+RUN ls -la /src/Project_AG.csproj
+
+RUN dotnet publish "Project_AG.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
 
 
 # Imagen final
