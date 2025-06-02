@@ -5,12 +5,11 @@ WORKDIR /src
 # Copiar todo el código fuente primero
 COPY . .
 
-# Restaurar dependencias
-RUN dotnet restore "Project_AG.csproj"
-
-# Compilar y publicar
-RUN dotnet build "Project_AG.csproj" -c Release -o /app/build -- verbosity maximum
-RUN dotnet publish "Project_AG.csproj" -c Release -o /app/publish /p:UseAppHost=false --verbosity maximum
+# Restaurar, compilar y publicar
+RUN dotnet publish "Project_AG.csproj" \
+  -c Release \
+  -o /app/publish \
+  /p:UseAppHost=false
 
 
 # Imagen final
