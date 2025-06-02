@@ -1,5 +1,4 @@
 ﻿@model Project_AG.Models.FondoMonetario
-
 @{
     ViewData["Title"] = "Editar Fondo Monetario";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,12 +25,11 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group mb-3">                        <label asp-for="TipoFondoMonetario" class="form-label"></label>
-                        <select asp-for="TipoFondoMonetario" class="form-control" 
-                                asp-items="Html.GetEnumSelectList<Project_AG.Models.TipoFondo>()">
-                        </select>
-                        <span asp-validation-for="TipoFondoMonetario" class="text-danger"></span>
-                    </div>
+                <div class="form-group mb-3">
+                <label asp-for="TipoFondoMonetario" class="form-label"></label>
+                <select asp-for="TipoFondoMonetario" class="form-control" asp-items="Html.GetEnumSelectList<Project_AG.Models.TipoFondo>()"></select>
+                <span asp-validation-for="TipoFondoMonetario" class="text-danger"></span>
+                </div>
                 </div>
 
                 <div class="col-md-12">
