@@ -2,15 +2,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copiar el archivo del proyecto y restaurar dependencias
-COPY ["Project_AG.csproj", "./"]
-RUN dotnet restore
-
-# Copiar el resto del código fuente
+# Copiar todo el código fuente primero
 COPY . .
 
-# Publicar directamente sin build intermedio
-RUN dotnet publish "Project_AG.csproj" -c Release -o /app/publish
+# Restaurar dependencias
+RUN dotnet restore "Project_AG.csproj"
+
+# Compilar y publicar
+RUN dotnet build "Project_AG.csproj" -c Release -o /app/build -- verbosity maximum
+RUN dotnet publish "Project_AG.csproj" -c Release -o /app/publish /p:UseAppHost=false --verbosity maximum
+
 
 # Imagen final
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
