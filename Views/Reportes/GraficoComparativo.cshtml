@@ -1,0 +1,102 @@
+﻿@model Project_AG.ViewModels.GraficoComparativoViewModel
+
+@{
+    ViewData["Title"] = "Gráfico Comparativo de Presupuesto y Ejecución";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    <form asp-controller="Reportes" asp-action="GraficoComparativo" method="post" class="mb-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="MesInicio" class="control-label"></label>
+                    <select asp-for="MesInicio" class="form-control">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option value="@i">@(new DateTime(2000, i, 1).ToString("MMMM"))</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MesInicio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="AnioInicio" class="control-label"></label>
+                    <select asp-for="AnioInicio" class="form-control">
+                        @for (int i = DateTime.Today.Year - 5; i <= DateTime.Today.Year + 5; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AnioInicio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="MesFin" class="control-label"></label>
+                    <select asp-for="MesFin" class="form-control">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option value="@i">@(new DateTime(2000, i, 1).ToString("MMMM"))</option>
+                        }
+                    </select>
+                    <span asp-validation-for="MesFin" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="AnioFin" class="control-label"></label>
+                    <select asp-for="AnioFin" class="form-control">
+                        @for (int i = DateTime.Today.Year - 5; i <= DateTime.Today.Year + 5; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AnioFin" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary">Generar Gráfico</button>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.MensajeError))
+        {
+            <div class="alert alert-warning mt-3" role="alert">
+                @Model.MensajeError
+            </div>
+        }
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </form>
+
+    @if (Model.ChartData != null && Model.ChartData.Any())
+    {
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <h5 class="card-title">Comparativa de Presupuesto vs. Ejecución</h5>
+                <canvas id="budgetExecutionChart" style="height: 400px; width: 100%;"></canvas>
+            </div>
+        </div>
+    }
+    else if (Model.ChartData != null && !Model.ChartData.Any() && string.IsNullOrEmpty(Model.MensajeError))
+    {
+        <div class="alert alert-info mt-3" role="alert">
+            No hay datos para mostrar el gráfico en el rango de fechas seleccionado.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var chartData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ChartData));
+    </script>
+    <script src="~/js/features/graficos.js"></script>
+}

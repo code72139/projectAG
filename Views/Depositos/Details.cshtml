@@ -1,0 +1,44 @@
+﻿@model Project_AG.Models.Deposito
+
+@{
+    ViewData["Title"] = "Detalles del Depósito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-money-bill-wave me-2"></i>Detalles del Depósito</h1>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+            <i class="fas fa-edit me-2"></i>Editar
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Volver
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Información del Depósito</h5>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.FechaDeposito)</label>
+                    <div class="fw-medium">@Model.FechaDeposito.ToString("D")</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.Monto)</label>
+                    <div class="fw-medium text-success">@Model.Monto.ToString("C")</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.FondoMonetario)</label>
+                    <div class="fw-medium">@Html.DisplayFor(model => model.FondoMonetario.NombreFondo)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

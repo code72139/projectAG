@@ -1,0 +1,110 @@
+# Directorios de desarrollo
+.vs/
+.vscode/
+obj/
+bin/
+TestResults/
+
+# Archivos de desarrollo
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Archivos de compilación
+*.dll.config
+*.cache
+*.pdb
+*.tmp
+*.log
+
+# Visual Studio
+.vs/
+*.ncrunch*
+*.[Cc]ache
+*.ilk
+*.meta
+*.ncb
+*.opensdf
+*.sdf
+*.tlog
+
+# Archivos de respaldo
+*~
+*.bak
+*.swp
+*.orig
+
+# Archivos de configuración sensibles
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+*.pfx
+*.key
+*.crt
+*.pem
+
+# Directorios específicos de .NET
+_ReSharper*/
+*.ReSharper*
+packages/
+artifacts/
+PublishProfiles/
+*.pubxml
+*.pubxml.user
+
+# Archivos de Git
+.git/
+.gitignore
+.gitattributes
+
+# Archivos de Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Directorios de Node.js (si se usa para frontend)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Archivos de documentación
+README.md
+LICENSE
+*.md
+docs/
+
+# Directorios de pruebas
+[Tt]est*/
+[Tt]ests*/
+TestResults/
+
+# Archivos temporales
+[Tt]emp/
+*.tmp
+*.temp
+*.swp
+*.*~
+
+# Archivos de cobertura de código
+*.coverage
+*.coveragexml
+coverage/
+
+# Archivos de herramientas de análisis
+*.report.xml
+*.Report.xml
+.sonarqube/
+
+# Logs y datos de runtime
+logs/
+*.log
+log.txt
+npm-debug.log*
+
+# Otros archivos innecesarios
+.DS_Store
+Thumbs.db
+desktop.ini

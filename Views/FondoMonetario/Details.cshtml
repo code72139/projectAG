@@ -1,0 +1,59 @@
+﻿@model Project_AG.Models.FondoMonetario
+
+@{
+    ViewData["Title"] = "Detalles del Fondo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-wallet me-2"></i>Detalles del Fondo</h1>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+            <i class="fas fa-edit me-2"></i>Editar
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Volver
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Información del Fondo Monetario</h5>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.NombreFondo)</label>
+                    <div class="fw-medium">@Html.DisplayFor(model => model.NombreFondo)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.TipoFondoMonetario)</label>
+                    <div class="fw-medium">@Html.DisplayFor(model => model.TipoFondoMonetario)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.DescripcionFondo)</label>
+                    <div class="fw-medium">@Html.DisplayFor(model => model.DescripcionFondo)</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.EstaActivo)</label>
+                    <div class="fw-medium">
+                        @if (Model.EstaActivo)
+                        {
+                            <span class="badge bg-success text-white">Activo</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger text-white">Inactivo</span>
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="text-muted mb-1">@Html.DisplayNameFor(model => model.FechaCreacion)</label>
+                    <div class="fw-medium">@Model.FechaCreacion.ToString("D")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Project_AG.Models.PresupuestoTipoGasto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">    <h1><i class="fas fa-money-check-alt me-2"></i>Presupuestos por Tipo de Gasto</h1>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus me-2"></i>Nuevo Presupuesto
+    </a>
+</div>
+<div class="card">    <div class="card-body">
+            <table class="table table-hover table-stack">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mes)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Anio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MontoPresupuestado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoGasto)
+                        </th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoPresupuestado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoGasto.Nombre)
+            </td>            <td class="action-buttons">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Editar">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" title="Detalles">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+}            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

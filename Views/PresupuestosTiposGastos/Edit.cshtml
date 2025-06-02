@@ -1,0 +1,74 @@
+﻿@model Project_AG.Models.PresupuestoTipoGasto
+
+@{
+    ViewData["Title"] = "Editar Presupuesto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-money-check-alt me-2"></i>Editar Presupuesto</h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UsuarioId" />
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="TipoGastoId" class="form-label">Tipo de Gasto</label>
+                        <select asp-for="TipoGastoId" class="form-control" asp-items="ViewBag.TipoGastoId"></select>
+                        <span asp-validation-for="TipoGastoId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="MontoPresupuestado" class="form-label"></label>
+                        <input asp-for="MontoPresupuestado" class="form-control" />
+                        <span asp-validation-for="MontoPresupuestado" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Mes" class="form-label"></label>
+                        <select asp-for="Mes" class="form-control">
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)
+                                </option>
+                            }
+                        </select>
+                        <span asp-validation-for="Mes" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Anio" class="form-label"></label>
+                        <input asp-for="Anio" class="form-control" />
+                        <span asp-validation-for="Anio" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i>Guardar Cambios
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver a la Lista
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

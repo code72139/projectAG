@@ -1,0 +1,103 @@
+﻿@model Project_AG.ViewModels.RegistroGastoCreateViewModel
+
+@{
+    ViewData["Title"] = "Editar Registro de Gasto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar Registro de Gasto</h1>
+<hr />
+
+<form asp-action="Edit" method="post">    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Fecha" class="control-label"></label>
+        <input asp-for="Fecha" class="form-control" type="date" />
+        <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FondoMonetarioId" class="control-label"></label>
+        <select asp-for="FondoMonetarioId" asp-items="Model.FondosDisponibles" class="form-control"></select>
+        <span asp-validation-for="FondoMonetarioId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NombreComercio" class="control-label"></label>
+        <input asp-for="NombreComercio" class="form-control" />
+        <span asp-validation-for="NombreComercio" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TipoDocumento" class="control-label"></label>        <select asp-for="TipoDocumento" class="form-control"
+                asp-items="Html.GetEnumSelectList<Project_AG.Models.TipoDocumento>()"></select>
+        <span asp-validation-for="TipoDocumento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Observaciones" class="control-label"></label>
+        <textarea asp-for="Observaciones" class="form-control"></textarea>
+        <span asp-validation-for="Observaciones" class="text-danger"></span>
+    </div>    <h4>Detalles del Gasto</h4>
+    <span asp-validation-for="DetallesGasto" class="text-danger"></span>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tipo de Gasto</th>
+                <th>Monto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="detalles-gasto-body">
+            @for (int i = 0; i < Model.DetallesGasto.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" asp-for="DetallesGasto[@i].Id" />
+                        <select asp-for="DetallesGasto[@i].TipoGastoId"
+                                asp-items="Model.TiposDeGastoDisponibles"
+                                class="form-control"></select>
+                        <span asp-validation-for="DetallesGasto[@i].TipoGastoId" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <input asp-for="DetallesGasto[@i].Monto" class="form-control" />
+                        <span asp-validation-for="DetallesGasto[@i].Monto" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">X</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-secondary" onclick="addRow()">+ Agregar Detalle</button>
+
+
+    <br /><br />
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar y Volver a la lista</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/features/registroGastos.js"></script>
+      <script>
+        function getTipoGastoOptions() {
+            let options = '';
+            @foreach (var item in Model.TiposDeGastoDisponibles)
+            {
+                <text>options += '<option value="@item.Value">@item.Text</option>';</text>
+            }
+            return options;
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeIndex(@Model.DetallesGasto.Count);
+            setupDecimalValidation();
+        });
+    </script>
+}
